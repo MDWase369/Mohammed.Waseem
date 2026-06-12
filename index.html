@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Waseem — Propulsion & Systems Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --bg:        #0B1120;
+  --bg2:       #0F1729;
+  --bg3:       #151F35;
+  --panel:     #1A2540;
+  --border:    #1E3355;
+  --border2:   #243552;
+  --cyan:      #00C8E8;
+  --cyan-dim:  #00C8E820;
+  --cyan-mid:  #00C8E850;
+  --orange:    #F97316;
+  --orange-dim:#F9731620;
+  --white:     #F0F4FF;
+  --silver:    #C8D8F0;
+  --muted:     #6478A0;
+  --dim:       #3A4E72;
+  --green:     #10B981;
+  --green-dim: #10B98118;
+
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --r: 4px;
+  --r2: 8px;
+  --transition: 0.2s ease;
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--silver); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ─── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(11,17,32,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 56px;
+}
+.nav-brand {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
+  color: var(--white); letter-spacing: 0.08em;
+}
+.nav-brand span { color: var(--cyan); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: var(--font-head); font-weight: 500; font-size: 0.85rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  transition: color var(--transition); padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+.nav-cta {
+  background: var(--cyan-dim); border: 1px solid var(--cyan-mid);
+  color: var(--cyan); padding: 6px 18px; border-radius: var(--r);
+  font-family: var(--font-head); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background var(--transition);
+}
+.nav-cta:hover { background: var(--cyan-mid); }
+
+/* ─── HERO ───────────────────────────────────────────── */
+#hero {
+  min-height: 100vh; padding-top: 56px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 4rem 3rem 4rem 3.5rem; position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--cyan);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--cyan);
+}
+.hero-name {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 0.95;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 0.8rem;
+}
+.hero-name .accent { color: var(--cyan); }
+.hero-title {
+  font-family: var(--font-head); font-weight: 400; font-size: 1.25rem;
+  color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-desc {
+  font-size: 0.95rem; color: var(--silver); line-height: 1.7;
+  max-width: 480px; margin-bottom: 2.5rem;
+  border-left: 2px solid var(--cyan-mid); padding-left: 1rem;
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;
+}
+.tag {
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted);
+  border: 1px solid var(--border2); padding: 3px 10px; border-radius: 2px;
+  letter-spacing: 0.08em;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--cyan); color: var(--bg); padding: 10px 26px;
+  font-family: var(--font-head); font-weight: 700; font-size: 0.88rem;
+  letter-spacing: 0.12em; text-transform: uppercase; border-radius: var(--r);
+  transition: opacity var(--transition);
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-secondary {
+  border: 1px solid var(--border2); color: var(--silver); padding: 10px 26px;
+  font-family: var(--font-head); font-weight: 600; font-size: 0.88rem;
+  letter-spacing: 0.12em; text-transform: uppercase; border-radius: var(--r);
+  transition: border-color var(--transition), color var(--transition);
+}
+.btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* ─── HERO RIGHT: ORBITAL HUD ────────────────────────── */
+.hero-right {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.orbital-canvas {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+}
+#orbit-svg { width: 100%; height: 100%; max-width: 580px; max-height: 580px; }
+
+/* HUD overlay panels */
+.hud-panel {
+  position: absolute; background: rgba(15,23,41,0.88); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: var(--r2); padding: 12px 16px;
+  font-family: var(--font-mono);
+}
+.hud-tl { top: 80px; left: 24px; min-width: 160px; }
+.hud-br { bottom: 64px; right: 24px; min-width: 180px; }
+.hud-label { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 3px; }
+.hud-value { font-size: 0.88rem; color: var(--cyan); font-weight: 500; }
+.hud-value.orange { color: var(--orange); }
+.hud-sep { height: 1px; background: var(--border); margin: 8px 0; }
+.hud-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ticker { display: inline-block; }
+
+/* ─── STATS BAR ──────────────────────────────────────── */
+.stats-bar {
+  background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 2rem 1.5rem; text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-head); font-weight: 800; font-size: 2.8rem;
+  color: var(--white); line-height: 1; margin-bottom: 0.3rem;
+}
+.stat-num .unit { font-size: 1.6rem; color: var(--cyan); }
+.stat-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* ─── SECTION COMMONS ────────────────────────────────── */
+section { padding: 6rem 3rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--cyan);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.section-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--cyan); }
+.section-title {
+  font-family: var(--font-head); font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--white); letter-spacing: 0.02em; margin-bottom: 1rem;
+}
+.section-subtitle {
+  font-size: 0.95rem; color: var(--muted); max-width: 560px; line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* ─── ABOUT ──────────────────────────────────────────── */
+#about { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-text p { font-size: 0.95rem; color: var(--silver); line-height: 1.8; margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--white); }
+.domains-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+.domains-table th {
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.15em; text-transform: uppercase; text-align: left;
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+}
+.domains-table td {
+  padding: 10px 12px; font-size: 0.88rem; border-bottom: 1px solid var(--border);
+}
+.domains-table tr:hover td { background: var(--bg3); }
+.domains-table .domain-name { color: var(--white); font-weight: 500; font-family: var(--font-head); font-size: 0.95rem; }
+.domains-table .domain-org { color: var(--cyan); font-family: var(--font-mono); font-size: 0.78rem; }
+
+/* ─── SKILLS ─────────────────────────────────────────── */
+#skills { background: var(--bg2); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skill-card {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r2);
+  padding: 1.5rem; transition: border-color var(--transition);
+}
+.skill-card:hover { border-color: var(--cyan); }
+.skill-card-header {
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem;
+}
+.skill-icon { font-size: 1.3rem; }
+.skill-card-title {
+  font-family: var(--font-head); font-weight: 700; font-size: 0.95rem;
+  color: var(--white); text-transform: uppercase; letter-spacing: 0.06em;
+}
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.skill-list li {
+  font-size: 0.85rem; color: var(--silver); padding-left: 1rem; position: relative;
+}
+.skill-list li::before {
+  content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: 0.7rem; top: 2px;
+}
+.tools-row {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.5rem;
+  padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.tool-pill {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--orange);
+  border: 1px solid var(--orange-dim); background: var(--orange-dim);
+  padding: 4px 12px; border-radius: 2px; letter-spacing: 0.06em;
+}
+
+/* ─── PROJECTS ───────────────────────────────────────── */
+#projects { background: var(--bg); }
+.projects-nav {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border); padding-bottom: 1rem;
+}
+.proj-tab {
+  font-family: var(--font-head); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  padding: 6px 14px; border-radius: var(--r); transition: all var(--transition);
+  border: 1px solid transparent;
+}
+.proj-tab:hover { color: var(--silver); }
+.proj-tab.active { color: var(--cyan); border-color: var(--cyan); background: var(--cyan-dim); }
+
+.project-card {
+  display: none; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border);
+  border-radius: var(--r2); overflow: hidden; background: var(--bg2);
+}
+.project-card.visible { display: grid; }
+
+.proj-image-col {
+  position: relative; min-height: 380px; background: var(--bg3);
+  display: flex; align-items: flex-end;
+}
+.proj-img-placeholder {
+  width: 100%; height: 100%; min-height: 380px;
+  background: linear-gradient(135deg, var(--bg3) 0%, var(--panel) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; position: relative; overflow: hidden;
+}
+.proj-img-placeholder::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(11,17,32,0.9) 0%, transparent 50%);
+}
+.proj-fig-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1rem 1.25rem; z-index: 2;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted);
+  background: linear-gradient(to top, rgba(11,17,32,0.95) 0%, transparent 100%);
+}
+
+.proj-content { padding: 2rem 2rem; overflow-y: auto; }
+.proj-num {
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+  letter-spacing: 0.2em; margin-bottom: 0.4rem;
+}
+.proj-title {
+  font-family: var(--font-head); font-weight: 800; font-size: 1.45rem;
+  color: var(--white); line-height: 1.15; margin-bottom: 0.3rem;
+}
+.proj-sub {
+  font-size: 0.82rem; color: var(--cyan); font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+.proj-tag {
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted);
+  border: 1px solid var(--border); padding: 2px 8px; border-radius: 2px;
+  letter-spacing: 0.08em;
+}
+
+/* TRL Bar */
+.trl-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+.trl-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); width: 30px; flex-shrink: 0; }
+.trl-bar { display: flex; gap: 2px; }
+.trl-seg {
+  width: 20px; height: 10px; border-radius: 1px;
+  background: var(--border); transition: background 0.1s;
+}
+.trl-seg.filled { background: var(--cyan); }
+.trl-seg.start { background: var(--dim); }
+.trl-achieved { font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); margin-left: 4px; }
+
+.proj-section-label {
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--cyan);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; margin-top: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.proj-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.proj-overview { font-size: 0.87rem; color: var(--silver); line-height: 1.7; margin-bottom: 0.5rem; }
+.proj-objective {
+  background: var(--panel); border-left: 3px solid var(--orange);
+  padding: 0.75rem 1rem; border-radius: 0 var(--r) var(--r) 0;
+  font-size: 0.82rem; color: var(--silver); line-height: 1.6; margin: 0.75rem 0;
+}
+.proj-objective strong { color: var(--orange); }
+
+/* Workflow steps */
+.workflow {
+  display: flex; gap: 4px; flex-wrap: nowrap; overflow-x: auto;
+  padding-bottom: 4px; margin: 0.5rem 0 0.75rem;
+}
+.workflow::-webkit-scrollbar { height: 3px; }
+.wf-step {
+  flex-shrink: 0; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 6px 8px; min-width: 72px; text-align: center;
+  position: relative;
+}
+.wf-num {
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--cyan);
+  display: block; margin-bottom: 2px;
+}
+.wf-title { font-size: 0.72rem; color: var(--white); font-weight: 600; font-family: var(--font-head); line-height: 1.2; }
+.wf-arrow { color: var(--dim); font-size: 0.7rem; align-self: center; flex-shrink: 0; }
+
+.proj-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin: 0.4rem 0; }
+.proj-bullets li { font-size: 0.83rem; color: var(--silver); padding-left: 1.1rem; position: relative; line-height: 1.55; }
+.proj-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: 0.65rem; top: 3px; }
+
+/* Challenge/solution pairs */
+.challenge-grid { display: flex; flex-direction: column; gap: 0.6rem; margin: 0.5rem 0; }
+.ch-card {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden;
+}
+.ch-problem {
+  padding: 7px 10px;
+  font-size: 0.78rem; color: var(--silver); line-height: 1.5;
+  border-left: 3px solid var(--orange);
+}
+.ch-problem-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--orange); letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
+.ch-solution {
+  padding: 7px 10px; background: var(--green-dim);
+  font-size: 0.78rem; color: var(--silver); line-height: 1.5;
+  border-left: 3px solid var(--green);
+}
+.ch-solution-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--green); letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
+
+/* Outcomes */
+.outcomes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+.outcome-pill {
+  font-size: 0.78rem; color: var(--green); border: 1px solid var(--green-dim);
+  background: var(--green-dim); padding: 4px 10px; border-radius: var(--r);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.outcome-pill::before { content: '✓'; font-size: 0.7rem; }
+
+/* Stat chips inside project */
+.proj-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0; }
+.proj-stat {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 8px 12px; text-align: center; min-width: 70px;
+}
+.proj-stat-val {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.15rem;
+  color: var(--cyan); line-height: 1;
+}
+.proj-stat-lbl { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
+
+/* Skills chips inside project */
+.skill-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.5rem 0; }
+.skill-chip {
+  font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan);
+  border: 1px solid var(--cyan-dim); background: var(--cyan-dim);
+  padding: 3px 8px; border-radius: 2px;
+}
+
+/* ─── RESEARCH ───────────────────────────────────────── */
+#research { background: var(--bg2); }
+.research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.research-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.5rem;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.research-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+.research-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.research-title {
+  font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+  color: var(--white); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.research-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+
+/* ─── EXPERIENCE ─────────────────────────────────────── */
+#experience { background: var(--bg); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.timeline-item { position: relative; padding-bottom: 3rem; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -2.4rem; top: 4px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--cyan); border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--cyan-mid);
+}
+.tl-date {
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--cyan);
+  letter-spacing: 0.1em; margin-bottom: 0.4rem;
+}
+.tl-role {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.15rem;
+  color: var(--white); margin-bottom: 0.2rem;
+}
+.tl-org {
+  font-family: var(--font-head); font-size: 0.9rem; color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.tl-desc { font-size: 0.87rem; color: var(--silver); line-height: 1.7; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+
+/* ─── EDUCATION ──────────────────────────────────────── */
+#education { background: var(--bg2); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.edu-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.edu-degree {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
+  color: var(--white); line-height: 1.25;
+}
+.edu-uni { font-size: 0.88rem; color: var(--cyan); }
+.edu-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.edu-detail { font-size: 0.83rem; color: var(--silver); line-height: 1.6; }
+
+/* ─── CONTACT ────────────────────────────────────────── */
+#contact { background: var(--bg); }
+.contact-inner {
+  max-width: 640px; margin: 0 auto; text-align: center;
+}
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; text-align: left;
+}
+.contact-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r2);
+  padding: 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+  transition: border-color var(--transition);
+}
+.contact-card:hover { border-color: var(--cyan); }
+.contact-icon { font-size: 1.3rem; flex-shrink: 0; }
+.contact-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+.contact-value { font-size: 0.88rem; color: var(--silver); margin-top: 2px; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 1.5rem 3rem; text-align: center;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim);
+  letter-spacing: 0.08em;
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 3rem 1.5rem; }
+  section { padding: 4rem 1.5rem; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .about-grid, .skills-grid, .edu-grid { grid-template-columns: 1fr; }
+  .research-grid { grid-template-columns: 1fr 1fr; }
+  .project-card { grid-template-columns: 1fr; }
+  .proj-image-col { min-height: 220px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+}
+@media (max-width: 600px) {
+  .research-grid { grid-template-columns: 1fr; }
+  .hero-name { font-size: 2.4rem; }
+}
+
+/* ─── PRINT / REDUCED MOTION ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ─── VIDEO EMBED ────────────────────────────────────── */
+.proj-video-col {
+  position: relative; min-height: 380px; background: var(--bg3);
+  display: flex; flex-direction: column;
+}
+.proj-video-wrap {
+  position: relative; width: 100%; flex: 1; min-height: 300px;
+  overflow: hidden; background: var(--bg3);
+}
+.proj-video-wrap iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.proj-video-citation {
+  padding: 10px 14px;
+  background: rgba(11,17,32,0.95);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted);
+  line-height: 1.5;
+}
+.proj-video-citation a {
+  color: var(--cyan); text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .proj-video-col { min-height: 220px; }
+  .proj-video-wrap { min-height: 200px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-brand">M<span>.</span>WASEEM</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Propulsion &amp; Systems Engineer</div>
+    <h1 class="hero-name">Mohammed<br><span class="accent">Waseem</span></h1>
+    <div class="hero-title">MSc Astronautics &amp; Space Engineering</div>
+    <p class="hero-desc">
+      Delivering flight-ready propulsion systems across space, defence, and naval applications.
+      Six programmes — ISRO Gaganyaan, DRDO, Thales Belgium — advancing technologies from
+      TRL&nbsp;2–3 to TRL&nbsp;7–8. Now specialising in spacecraft propulsion at Cranfield University.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Solid Propulsion</span>
+      <span class="tag">Hybrid Propulsion</span>
+      <span class="tag">Gas Generation</span>
+      <span class="tag">Systems Engineering</span>
+      <span class="tag">Test &amp; Validation</span>
+      <span class="tag">Cranfield University</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Contact Me</a>
+    </div>
+  </div>
+
+  <!-- ORBITAL HUD -->
+  <div class="hero-right">
+    <div class="orbital-canvas">
+      <svg id="orbit-svg" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid lines -->
+        <defs>
+          <radialGradient id="earthGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a4080"/>
+            <stop offset="60%" stop-color="#0f2a55"/>
+            <stop offset="100%" stop-color="#071830"/>
+          </radialGradient>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00C8E8" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#00C8E8" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="bloom">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background grid -->
+        <g opacity="0.06" stroke="#00C8E8" stroke-width="0.5">
+          <line x1="280" y1="0" x2="280" y2="560"/>
+          <line x1="0" y1="280" x2="560" y2="280"/>
+          <circle cx="280" cy="280" r="80" fill="none"/>
+          <circle cx="280" cy="280" r="140" fill="none"/>
+          <circle cx="280" cy="280" r="200" fill="none"/>
+          <circle cx="280" cy="280" r="260" fill="none"/>
+        </g>
+
+        <!-- Orbit path (elliptical) -->
+        <ellipse id="orbit-path" cx="280" cy="280" rx="185" ry="130"
+          fill="none" stroke="#00C8E8" stroke-width="1" stroke-dasharray="4 6"
+          opacity="0.35"/>
+
+        <!-- Earth glow -->
+        <circle cx="280" cy="280" r="65" fill="url(#glowGrad)"/>
+        <!-- Earth -->
+        <circle cx="280" cy="280" r="38" fill="url(#earthGrad)"/>
+        <!-- Earth outline -->
+        <circle cx="280" cy="280" r="38" fill="none" stroke="#00C8E8" stroke-width="0.8" opacity="0.5"/>
+        <!-- Earth grid lines -->
+        <ellipse cx="280" cy="280" rx="38" ry="16" fill="none" stroke="#00C8E8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="280" y1="242" x2="280" y2="318" stroke="#00C8E8" stroke-width="0.5" opacity="0.3"/>
+
+        <!-- Satellite -->
+        <g id="satellite" filter="url(#bloom)">
+          <rect x="-10" y="-4" width="20" height="8" rx="1" fill="#00C8E8" opacity="0.9"/>
+          <!-- Solar panels -->
+          <rect x="-22" y="-2" width="10" height="4" rx="0.5" fill="#00C8E8" opacity="0.5"/>
+          <rect x="12" y="-2" width="10" height="4" rx="0.5" fill="#00C8E8" opacity="0.5"/>
+          <!-- Antenna -->
+          <line x1="0" y1="-4" x2="0" y2="-10" stroke="#00C8E8" stroke-width="0.8"/>
+          <circle cx="0" cy="-10" r="1.5" fill="#00C8E8"/>
+        </g>
+
+        <!-- Tick marks around orbit for decorative purpose -->
+        <g opacity="0.2" stroke="#00C8E8" stroke-width="0.8">
+          <line x1="94" y1="280" x2="88" y2="280"/>
+          <line x1="466" y1="280" x2="472" y2="280"/>
+          <line x1="280" y1="148" x2="280" y2="142"/>
+          <line x1="280" y1="412" x2="280" y2="418"/>
+        </g>
+
+        <!-- Corner reticle marks -->
+        <g stroke="#00C8E8" stroke-width="0.8" opacity="0.35">
+          <path d="M 48 48 L 48 72 M 48 48 L 72 48"/>
+          <path d="M 512 48 L 512 72 M 512 48 L 488 48"/>
+          <path d="M 48 512 L 48 488 M 48 512 L 72 512"/>
+          <path d="M 512 512 L 512 488 M 512 512 L 488 512"/>
+        </g>
+
+        <!-- Orbital trail (fading arc behind satellite) -->
+        <path id="orbit-trail" d="" fill="none" stroke="#00C8E8" stroke-width="2" stroke-linecap="round" opacity="0"/>
+      </svg>
+    </div>
+
+    <!-- HUD Panels -->
+    <div class="hud-panel hud-tl">
+      <div class="hud-label">Mission Elapsed</div>
+      <div class="hud-value" id="met-counter">T+ 00:00:00</div>
+      <div class="hud-sep"></div>
+      <div class="hud-row">
+        <div>
+          <div class="hud-label">Altitude</div>
+          <div class="hud-value">550 km</div>
+        </div>
+        <div>
+          <div class="hud-label">Inc</div>
+          <div class="hud-value">28.5°</div>
+        </div>
+      </div>
+    </div>
+    <div class="hud-panel hud-br">
+      <div class="hud-label">Current Programme</div>
+      <div class="hud-value">MSc Astronautics</div>
+      <div class="hud-sep"></div>
+      <div class="hud-label">Institution</div>
+      <div class="hud-value orange">Cranfield University</div>
+      <div class="hud-sep"></div>
+      <div class="hud-row">
+        <div>
+          <div class="hud-label">Status</div>
+          <div class="hud-value" style="color:var(--green)">●&nbsp;Active</div>
+        </div>
+        <div>
+          <div class="hud-label">TRL Max</div>
+          <div class="hud-value">7–8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">TRL <span class="unit">7–8</span></div>
+    <div class="stat-label">Max TRL Achieved</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">100<span class="unit">+</span></div>
+    <div class="stat-label">System-Level Tests</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Customer Programmes</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow">Profile</div>
+    <h2 class="section-title">Engineering Background</h2>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>Propulsion and systems engineer with hands-on experience across <strong>solid rocket motors, low-temperature gas generators, hybrid rocket propulsion, and pyrotechnic systems</strong>. Currently pursuing MSc Astronautics and Space Engineering at Cranfield University, specialising in spacecraft propulsion systems.</p>
+        <p>Previous role at <strong>Rathi Aerospace Labs</strong> involved delivering six flight-critical programmes for Thales Belgium, ISRO (Gaganyaan CMUS, IAD), IIT Madras/DPSU, and DRDO — advancing technologies from concept to TRL 7–8 across space, defence, and naval domains.</p>
+        <p>Seeking <strong>internships, graduate engineering roles, and research collaborations</strong> in spacecraft propulsion, advanced propulsion technologies, and space systems engineering. Open to opportunities with aerospace primes, new space companies, and research institutions.</p>
+      </div>
+      <div>
+        <table class="domains-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Programme / Customer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="domain-name">Human Spaceflight</span></td>
+              <td><span class="domain-org">ISRO Gaganyaan CMUS — HSFC</span></td>
+            </tr>
+            <tr>
+              <td><span class="domain-name">Space Recovery</span></td>
+              <td><span class="domain-org">ISRO IAD — VSSC, Trivandrum</span></td>
+            </tr>
+            <tr>
+              <td><span class="domain-name">Defence Rocketry</span></td>
+              <td><span class="domain-org">Thales Belgium / DPSU — 70 &amp; 80 mm</span></td>
+            </tr>
+            <tr>
+              <td><span class="domain-name">Naval Defence</span></td>
+              <td><span class="domain-org">DRDO NSDL — Torpedo Recovery</span></td>
+            </tr>
+            <tr>
+              <td><span class="domain-name">Hybrid Propulsion</span></td>
+              <td><span class="domain-org">RAL / SDSC — Wax-LOX, 60 bar, 1 kN</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-eyebrow">Competencies</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-subtitle">Engineering capabilities demonstrated across six delivered programmes.</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <span class="skill-icon">🚀</span>
+          <span class="skill-card-title">Propulsion &amp; Energetics</span>
+        </div>
+        <ul class="skill-list">
+          <li>Solid Rocket Propulsion</li>
+          <li>Hybrid Rocket Propulsion</li>
+          <li>Liquid Rocket Propulsion</li>
+          <li>Electric Propulsion</li>
+          <li>Low-Temperature Gas Generation</li>
+          <li>Propellant Grain Casting</li>
+          <li>Pyrotechnic Ignition Design</li>
+          <li>Combustion Chamber Design</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <span class="skill-icon">⚙️</span>
+          <span class="skill-card-title">Design &amp; Analysis</span>
+        </div>
+        <ul class="skill-list">
+          <li>SolidWorks (3D CAD)</li>
+          <li>ANSYS Workbench (FEA)</li>
+          <li>Pressure Vessel Design</li>
+          <li>Fluid System Design</li>
+          <li>Valve Systems (NRV / PRV)</li>
+          <li>Solid Propellant Designing</li>
+          <li>Tolerance Verification</li>
+          <li>Manufacturing Validation</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <span class="skill-icon">📡</span>
+          <span class="skill-card-title">Test &amp; Instrumentation</span>
+        </div>
+        <ul class="skill-list">
+          <li>Static &amp; Dynamic Hot-Fire Testing</li>
+          <li>Instrumentation System Design</li>
+          <li>NI Signal Express (DAQ)</li>
+          <li>FMEA</li>
+          <li>PT / TT Curve Analysis</li>
+          <li>Data Acquisition &amp; Analysis</li>
+          <li>Failure Investigation</li>
+          <li>Root Cause Analysis</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tools-row reveal">
+      <span class="tool-pill">SolidWorks</span>
+      <span class="tool-pill">ANSYS Workbench</span>
+      <span class="tool-pill">NI Signal Express</span>
+      <span class="tool-pill">Crawford Bomb Test Rig</span>
+      <span class="tool-pill">MS Office Suite</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-eyebrow">Portfolio</div>
+    <h2 class="section-title">Engineering Projects</h2>
+    <p class="section-subtitle">Six delivered programmes across space, defence, and naval applications. Select a project to view the full engineering breakdown.</p>
+
+    <div class="projects-nav">
+      <button class="proj-tab active" onclick="showProject(0)">01 / 70mm Rocket</button>
+      <button class="proj-tab" onclick="showProject(1)">02 / 80mm Rocket</button>
+      <button class="proj-tab" onclick="showProject(2)">03 / Gaganyaan CMUS</button>
+      <button class="proj-tab" onclick="showProject(3)">04 / IAD Recovery</button>
+      <button class="proj-tab" onclick="showProject(4)">05 / Torpedo Recovery</button>
+      <button class="proj-tab" onclick="showProject(5)">06 / Hybrid Rocket</button>
+    </div>
+
+    <!-- PROJECT 1 -->
+    <div class="project-card visible" id="proj-0">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7207335975704756224"
+            allowfullscreen title="70mm Rocket — Static hot-fire test for Thales Belgium"></iframe>
+        </div>
+        <div class="proj-video-citation">
+          📹 Video source: <a href="https://www.linkedin.com/posts/rathi-aerospace-labs_rathiaerospacelabs-thales-defence-activity-7207335975704756224-HuAv/" target="_blank" rel="noopener">Rathi Aerospace Labs on LinkedIn</a> — 70mm solid rocket motor static hot-fire test, Thales Belgium programme. Reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 01 / 06 · DEFENCE ROCKETRY</div>
+        <div class="proj-title">70 mm Guided &amp; Unguided Rocket Propulsion System</div>
+        <div class="proj-sub">Rathi Aerospace Labs × Thales Belgium · 2-Year Programme</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Solid Propulsion</span><span class="proj-tag">Static Testing</span>
+          <span class="proj-tag">Instrumentation</span><span class="proj-tag">Propellant Casting</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-0"></div>
+          <span class="trl-achieved">→ TRL 7–8</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">20%</div><div class="proj-stat-lbl">Performance increase</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">99%</div><div class="proj-stat-lbl">Predicted results met</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">&lt;1.5%</div><div class="proj-stat-lbl">Burn rate error</div></div>
+        </div>
+
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">Two-year international collaboration to develop and validate a new solid-propellant propulsion system for 70mm guided and unguided rockets. Applications include air-to-ground and ground-to-ground missions.</p>
+        <div class="proj-objective"><strong>Engineering Objective:</strong> Validate a 20% propulsion performance improvement and advance the system to TRL 7–8 for the Thales Belgium programme.</div>
+
+        <div class="proj-section-label">My Role</div>
+        <p class="proj-overview">Sole engineer responsible for instrumentation design, ignition system, propellant casting, burn-rate characterisation, and interface compliance verification.</p>
+
+        <div class="proj-section-label">Engineering Workflow</div>
+        <div class="workflow">
+          <div class="wf-step"><span class="wf-num">01</span><div class="wf-title">Design Instrumentation &amp; Ignition</div></div>
+          <span class="wf-arrow">›</span>
+          <div class="wf-step"><span class="wf-num">02</span><div class="wf-title">Validate Assembly &amp; Interface</div></div>
+          <span class="wf-arrow">›</span>
+          <div class="wf-step"><span class="wf-num">03</span><div class="wf-title">Cast Propellant Grain</div></div>
+          <span class="wf-arrow">›</span>
+          <div class="wf-step"><span class="wf-num">04</span><div class="wf-title">Burn Rate Test (Crawford Bomb)</div></div>
+          <span class="wf-arrow">›</span>
+          <div class="wf-step"><span class="wf-num">05</span><div class="wf-title">Static Hot-Fire 1000 Hz DAQ</div></div>
+          <span class="wf-arrow">›</span>
+          <div class="wf-step"><span class="wf-num">06</span><div class="wf-title">Verify vs. Predicted</div></div>
+        </div>
+
+        <div class="proj-section-label">Key Contributions</div>
+        <ul class="proj-bullets">
+          <li>Designed multi-channel instrumentation system (pressure transducers + thrust load cells) at 1000 Hz using NI Signal Express</li>
+          <li>Designed pyrotechnic ignition command and trigger system — reliable sub-second actuation with fail-safe interlocking</li>
+          <li>Developed propellant casting procedure — eliminated blow-hole formation to near-zero rate on all production batches</li>
+          <li>Characterised burn rates of multiple composite solid propellant formulations using Crawford Bomb technique; &lt;1.5% measurement error</li>
+        </ul>
+
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Blow-holes in propellant casting degrade combustion uniformity and structural integrity</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Iterative refinement of pour rate, vacuum de-aeration sequencing, and cure conditions → near-zero blow-hole rate</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>1000 Hz PT/TT data fidelity requires careful anti-aliasing, shielding, and sync triggering</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Low-impedance cable routing, sensor placement, and software trigger alignment to preserve signal integrity</div>
+          </div>
+        </div>
+
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">20% performance increase validated</span>
+          <span class="outcome-pill">~99% agreement with predicted results</span>
+          <span class="outcome-pill">Technology advanced to TRL 7–8</span>
+          <span class="outcome-pill">Validated burn-rate database established</span>
+        </div>
+
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Solid Rocket Propulsion</span><span class="skill-chip">Propellant Casting</span>
+          <span class="skill-chip">Crawford Bomb Testing</span><span class="skill-chip">Pyrotechnic Ignition</span>
+          <span class="skill-chip">DAQ &amp; Instrumentation</span><span class="skill-chip">Static Hot-Fire Testing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card" id="proj-1">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7285974150718926849"
+            allowfullscreen title="80mm Rocket — Dynamic firing, Indian Army / IIT Madras DPSU"></iframe>
+        </div>
+        <div class="proj-video-citation">
+          📹 Video source: <a href="https://www.linkedin.com/posts/rathi-aerospace-labs_rathiaerospacelabs-indianarmy-defence-activity-7285974150718926849-sjJG/" target="_blank" rel="noopener">Rathi Aerospace Labs on LinkedIn</a> — 80mm unguided rocket dynamic firing, Indian Army / IIT Madras DPSU programme. Reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 02 / 06 · DEFENCE ROCKETRY</div>
+        <div class="proj-title">80 mm Unguided Rocket Propulsion System</div>
+        <div class="proj-sub">Rathi Aerospace Labs / IIT Madras × DPSU · Static &amp; Dynamic Firing</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Solid Propulsion</span><span class="proj-tag">Dynamic Firing</span>
+          <span class="proj-tag">ANSYS FEA</span><span class="proj-tag">School of Artillery</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-1"></div>
+          <span class="trl-achieved">→ TRL 7–8</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">~3 kg</div><div class="proj-stat-lbl">Propellant per charge</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">2×</div><div class="proj-stat-lbl">Test phases (static + dynamic)</div></div>
+        </div>
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">Solid-propellant system for an 80mm unguided rocket developed with IIT Madras for a Defence PSU. Validation in two phases: static bench firing at the RAL facility, then live dynamic firing at School of Artillery, Nashik.</p>
+        <div class="proj-objective"><strong>My Role:</strong> Instrumentation design, propellant casting, static and dynamic ignition system design, assembly compliance, FEA verification.</div>
+        <div class="proj-section-label">Key Contributions</div>
+        <ul class="proj-bullets">
+          <li>Designed static instrumentation system capturing chamber pressure and gas temperature at 1000 Hz — PT and TT performance curves generated</li>
+          <li>Designed and verified ignition trigger for both static bench and live field firing — re-engineered circuit for field safety protocols</li>
+          <li>Performed ~3 kg composite propellant casting per motor charge — near-zero blow-hole rate across all batches</li>
+          <li>Conducted FEA using ANSYS Workbench to verify structural margins of motor pressure vessel components</li>
+          <li>Executed dynamic firing at School of Artillery, Nashik — confirmed propulsion performance under operational conditions</li>
+        </ul>
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Adapting ignition circuit from static bench to live field environment with different safety protocols and standoff distances</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Trigger circuit re-engineered for field interface while preserving arming and timing functions</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Maintaining data integrity during dynamic firing: shock, vibration, umbilical disconnect events</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Robust cable management and sensor mounting specified for high-shock transient environment</div>
+          </div>
+        </div>
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">Successful live dynamic firing, Nashik</span>
+          <span class="outcome-pill">Technology advanced to TRL 7–8</span>
+          <span class="outcome-pill">Approved for DPSU qualification</span>
+          <span class="outcome-pill">3 kg casting baseline validated</span>
+        </div>
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Solid Rocket Propulsion</span><span class="skill-chip">Static &amp; Dynamic Testing</span>
+          <span class="skill-chip">ANSYS FEA</span><span class="skill-chip">Pyrotechnic Ignition</span>
+          <span class="skill-chip">Propellant Casting</span><span class="skill-chip">Instrumentation Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card" id="proj-2">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:6946047388113330176"
+            allowfullscreen title="LTGG-CMUS — 660L balloon inflation test for Gaganyaan"></iframe>
+        </div>
+        <div class="proj-video-citation">
+          📹 Video source: <a href="https://www.linkedin.com/posts/rathi-aerospace-labs_rathiaerospacelabs-isro-aerospace-activity-6946047388113330176--aEa" target="_blank" rel="noopener">Rathi Aerospace Labs on LinkedIn</a> — LTGG filling a 660 L spherical gas bag for the Gaganyaan Crew Module Up-Righting System (ISRO). Reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 03 / 06 · HUMAN SPACEFLIGHT — ISRO GAGANYAAN</div>
+        <div class="proj-title">LTGG — Gaganyaan Crew Module Up-Righting System</div>
+        <div class="proj-sub">ISRO Human Space Flight Centre · Crew Safety Critical System</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Gas Generation</span><span class="proj-tag">Human Spaceflight</span>
+          <span class="proj-tag">Crew Safety</span><span class="proj-tag">SolidWorks</span><span class="proj-tag">ANSYS</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-2"></div>
+          <span class="trl-achieved">TRL 3–4 → 7–8 in &lt;1 year</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">100+</div><div class="proj-stat-lbl">Iterative tests</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">6</div><div class="proj-stat-lbl">Balloons simultaneously</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">0.2 bar</div><div class="proj-stat-lbl">Target Pd</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">50 bar</div><div class="proj-stat-lbl">Proof pressure</div></div>
+        </div>
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">India's first crewed orbital mission requires a Crew Module Up-Righting System (CMUS) to reorient the capsule post-splashdown. RAL was contracted by ISRO HSFC to develop the lightest and most compact Low-Temperature Gas Generator in India, inflating six spherical flotation balloons (3×400 L + 3×600 L) simultaneously at 0.2 bar differential pressure.</p>
+        <div class="proj-objective"><strong>My Role:</strong> Sole engineer — end-to-end design, manufacturing validation, and testing. Sole executor of 100+ iterative system-level tests. Demonstrated technology to the ISRO Chairman.</div>
+        <div class="proj-section-label">Key Contributions</div>
+        <ul class="proj-bullets">
+          <li>Designed LTGG system architecture for simultaneous 6-balloon inflation at 0.2 bar Pd — sizing combustion chamber, propellant charge, and gas routing</li>
+          <li>Designed all mechanical hardware in SolidWorks: pressure chamber, manifold, plumbing, connectors — rated to 50 bar, 0.3–1.0 kg/s mass flow</li>
+          <li>Validated all components to 0.2 mm manufacturing tolerance — critical for pressure-boundary sealing integrity</li>
+          <li>Designed synchronised pyrotechnic ignition for distributed gas generators — sub-millisecond coincidence timing confirmed by test</li>
+          <li>Conducted 100+ iterative tests, varying propellant charge, orifice sizing, plumbing routing, and NRV/PRV settings</li>
+        </ul>
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Simultaneous inflation of 6 balloons at two different volumes to matched 0.2 bar Pd</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Independently sized orifices and flow restrictors per balloon feed path — validated across 100+ test firings</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Lightest LTGG in India target — minimum weight while meeting gas mass and pressurisation rate</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Iterative trade-off: propellant formulation vs. chamber geometry vs. pressurisation rate, optimising mass-to-performance</div>
+          </div>
+        </div>
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">TRL 3–4 → 7–8 in &lt;1 year</span>
+          <span class="outcome-pill">Lightest LTGG of its type in India</span>
+          <span class="outcome-pill">Demonstrated to ISRO Chairman</span>
+          <span class="outcome-pill">Gaganyaan flight hardware pathway cleared</span>
+        </div>
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Systems Engineering</span><span class="skill-chip">Gas Generator Design</span>
+          <span class="skill-chip">SolidWorks</span><span class="skill-chip">ANSYS Workbench</span>
+          <span class="skill-chip">Fluid Systems</span><span class="skill-chip">NRV/PRV Design</span>
+          <span class="skill-chip">Space Systems</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card" id="proj-3">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7044606513113415680"
+            allowfullscreen title="LTGG-IAD — Inflatable Aerodynamic Decelerator inflation test at VSSC"></iframe>
+        </div>
+        <div class="proj-video-citation">
+          📹 Video source: <a href="https://www.linkedin.com/posts/rathi-aerospace-labs_rathiaerospacelabs-drdo-aerospace-activity-7044606513113415680-ajPT" target="_blank" rel="noopener">Rathi Aerospace Labs on LinkedIn</a> — LTGG inflating the IAD toroidal bag at VSSC, ISRO. 48-hour pressure hold test. Reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 04 / 06 · SPACE RECOVERY — ISRO VSSC</div>
+        <div class="proj-title">LTGG — Inflatable Aerodynamic Decelerator (IAD)</div>
+        <div class="proj-sub">ISRO Vikram Sarabhai Space Centre · Launch Vehicle Stage Recovery</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Space Recovery</span><span class="proj-tag">Toroidal Inflatable</span>
+          <span class="proj-tag">NRV/PRV</span><span class="proj-tag">Condensation Analysis</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-3"></div>
+          <span class="trl-achieved">TRL 5–6 → 7–8 in &lt;1 year</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">48 hr</div><div class="proj-stat-lbl">Pressure hold test</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">3×</div><div class="proj-stat-lbl">Mass reduction vs. pneumatic</div></div>
+        </div>
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">The IAD is a toroidal inflatable structure deployed at altitude for recovery of spent launch vehicle stages and future Mars/Venus landers. RAL's LTGG offers 3× system mass reduction over the existing pneumatic system. This project designed and manufactured LTGG ground test hardware for a 90 L toroidal bag, executed the 48-hour validation campaign at VSSC, and secured approval for flight hardware development.</p>
+        <div class="proj-objective"><strong>My Role:</strong> Complete design and manufacture of LTGG hardware; sole execution of system validation at VSSC; data analysis for condensation correction, leak integrity, and NRV/PRV verification.</div>
+        <div class="proj-section-label">Key Contributions</div>
+        <ul class="proj-bullets">
+          <li>Designed and manufactured complete LTGG system for 90 L toroidal IAD bag inflation at 0.2 bar differential pressure</li>
+          <li>Conducted 48-hour system validation at VSSC — confirmed sustained pressure, structural integrity, and leak tightness</li>
+          <li>Characterised condensation-induced pressure drop, isolating it from genuine leakage via temperature logging and thermodynamic analysis</li>
+          <li>Verified NRV and PRV operation under representative conditions — one-way flow control and overpressure protection confirmed</li>
+          <li>Presented full test evidence package at VSSC customer review — secured approval for flight hardware development</li>
+        </ul>
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Condensation-induced Pd drop over 48-hour hold misinterpreted as leakage, causing false failure readings</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Test designed with temperature logging to separate condensation loss from genuine leakage — validated corrected leak rate</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>NRV cracking pressure and PRV set-point calibration for 0.2 bar Pd with tight tolerance</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Iterative bench calibration of NRV and PRV before VSSC test — confirmed within specification</div>
+          </div>
+        </div>
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">Flight HW development approved by VSSC</span>
+          <span class="outcome-pill">48-hr hold: leak integrity confirmed</span>
+          <span class="outcome-pill">3× mass advantage over pneumatic</span>
+          <span class="outcome-pill">Condensation correction model validated</span>
+        </div>
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Gas Generator Design</span><span class="skill-chip">Fluid Systems</span>
+          <span class="skill-chip">Valve Systems</span><span class="skill-chip">Testing &amp; Validation</span>
+          <span class="skill-chip">Condensation Analysis</span><span class="skill-chip">Space Recovery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card" id="proj-4">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap" style="overflow:hidden;position:relative;">
+          <img src="NSDL_160L_Motor.jpeg" alt="LTGG 160L combustion chamber on test rig at NSDL-DRDO — gas plume visible at nozzle exit during live firing"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
+        </div>
+        <div class="proj-video-citation">
+          📷 Image: LTGG 160 L combustion chamber on instrumented linear test rig at NSDL-DRDO facility. Gas plume visible at nozzle exit during live actuation. © Rathi Aerospace Labs — reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 05 / 06 · NAVAL DEFENCE — DRDO NSDL</div>
+        <div class="proj-title">LTGG — Torpedo Recovery Inflation System</div>
+        <div class="proj-sub">Naval Science &amp; Technological Laboratory, DRDO · 160 L &amp; 520 L Recovery Bags</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Naval Defence</span><span class="proj-tag">High-Pressure GG</span>
+          <span class="proj-tag">5–10 bar</span><span class="proj-tag">Failure Investigation</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-4"></div>
+          <span class="trl-achieved">TRL 2–3 → 7–8 in 5–7 months</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">50 bar</div><div class="proj-stat-lbl">Proof pressure</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">2 days</div><div class="proj-stat-lbl">Failure fix turnaround</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">5–7 mo</div><div class="proj-stat-lbl">Full TRL development</div></div>
+        </div>
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">DRDO NSDL required a gas generation system to inflate 160 L and 520 L toroidal recovery bags for torpedo retrieval. Unlike prior LTGG applications at 0.2 bar, this system demanded 5–10 bar differential pressure — requiring distinct chamber design, 50 bar proof plumbing, and thermal management to prevent bag material damage.</p>
+        <div class="proj-objective"><strong>Rapid Failure Investigation:</strong> Temperature overshoot identified during initial testing. Root cause — insufficient thermal damping in gas path. Corrective heat-soak insert designed, manufactured, and validated within 2 days.</div>
+        <div class="proj-section-label">Key Contributions</div>
+        <ul class="proj-bullets">
+          <li>Designed LTGG combustion chambers for 160 L and 520 L at 5–10 bar Pd — adapting charge sizing and orifice geometry from low-pressure designs</li>
+          <li>Designed all plumbing hardware from scratch: pipes, connectors, seals, O-rings, manifolds — rated to 50 bar proof, ~1 kg/s mass flow</li>
+          <li>Designed multi-channel instrumentation system (300–1000 Hz) capturing PT and TT performance curves</li>
+          <li>Executed full system-level test matrix at NSDL-DRDO characterising both configurations</li>
+          <li>Performed thermal root cause analysis — designed and manufactured corrective insert within 2-day turnaround; retested and verified</li>
+        </ul>
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Scaling from 0.2 bar to 5–10 bar: combustion chamber re-sizing, higher wall thickness, 50 bar proof plumbing</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Re-evaluated chamber sizing, propellant charge, and orifice geometry; conservative margins on all pressure-boundary components</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Temperature overshoot at bag inlet — risk of bag material degradation, identified during NSDL testing</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Thermal insert added to plumbing to increase convective heat transfer; designed, manufactured, and retested within 2 days</div>
+          </div>
+        </div>
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">Both configs validated at NSDL-DRDO</span>
+          <span class="outcome-pill">TRL 2–3 → 7–8 in 5–7 months</span>
+          <span class="outcome-pill">Temp overshoot resolved in 2 days</span>
+          <span class="outcome-pill">Naval defence-ready design delivered</span>
+        </div>
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Mechanical Design</span><span class="skill-chip">Pressure Vessel Design</span>
+          <span class="skill-chip">Plumbing Systems</span><span class="skill-chip">Failure Investigation</span>
+          <span class="skill-chip">Root Cause Analysis</span><span class="skill-chip">Naval Defence</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card" id="proj-5">
+      <div class="proj-video-col">
+        <div class="proj-video-wrap">
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:6920253644592357376"
+            allowfullscreen title="Wax/LOX Hybrid Rocket — Hot-fire at SDSC Sriharikota"></iframe>
+        </div>
+        <div class="proj-video-citation">
+          📹 Video source: <a href="https://www.linkedin.com/posts/rathi-aerospace-labs_isro-aerospace-propulsionsystems-activity-6920253644592357376-ZUAR/" target="_blank" rel="noopener">Rathi Aerospace Labs on LinkedIn</a> — Wax/LOX hybrid rocket hot-fire test at SDSC sub-scale facility, Sriharikota. Reproduced with attribution.
+        </div>
+      </div>
+      <div class="proj-content">
+        <div class="proj-num">PROJECT 06 / 06 · HYBRID PROPULSION R&amp;D</div>
+        <div class="proj-title">Wax / LOX Hybrid Rocket Propulsion System</div>
+        <div class="proj-sub">Rathi Aerospace Labs · SDSC Sub-Scale Facility, Sriharikota</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Hybrid Propulsion</span><span class="proj-tag">60 bar</span>
+          <span class="proj-tag">WAX-LOX</span><span class="proj-tag">SDSC ISRO</span>
+        </div>
+        <div class="trl-row">
+          <span class="trl-label">TRL</span>
+          <div class="trl-bar" id="trl-5"></div>
+          <span class="trl-achieved">TRL 5–6 Demonstrated</span>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-val">60 bar</div><div class="proj-stat-lbl">Chamber pressure</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">~1 kN</div><div class="proj-stat-lbl">Thrust output</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">6 sec</div><div class="proj-stat-lbl">Test duration</div></div>
+          <div class="proj-stat"><div class="proj-stat-val">~0%</div><div class="proj-stat-lbl">Fuel grain blow-holes</div></div>
+        </div>
+        <div class="proj-section-label">Overview</div>
+        <p class="proj-overview">Hybrid rocket development programme at RAL targeting aluminized paraffin wax + LOX combustion at 60 bar chamber pressure. Tested at the ISRO SDSC sub-scale facility, Sriharikota — among very few hybrid systems globally to achieve stable combustion at this pressure. The 6-second test validated fuel grain quality, combustion stability, and jet deflector geometry.</p>
+        <div class="proj-objective"><strong>My Role:</strong> Propellant preparation — aluminized paraffin wax fuel grain casting and resin-based thermal insulation casting. Supported test operations at SDSC facility.</div>
+        <div class="proj-section-label">Engineering Work Performed</div>
+        <ul class="proj-bullets">
+          <li>Cast aluminized paraffin wax fuel grains — controlled pour temperature, fill sequence, and solidification to achieve void-free grain with near-zero blow-holes</li>
+          <li>Cast resin-based thermal insulation for fuel grain outer surface — protecting motor case from thermal loading during combustion</li>
+          <li>Supported pre-test system checks and safety procedures at SDSC sub-scale launch pad facility within ISRO's test site protocols</li>
+        </ul>
+        <div class="proj-section-label">Challenges &amp; Solutions</div>
+        <div class="challenge-grid">
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Blow-holes in wax fuel grain at 60 bar create local burn-through and combustion instability — defects amplified at high pressure</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Careful pour temperature control, sequential section fill, and vacuum de-aeration → near-zero blow-hole rate achieved</div>
+          </div>
+          <div class="ch-card">
+            <div class="ch-problem"><span class="ch-problem-label">⚠ Challenge</span>Stable combustion at 60 bar — most hybrid systems operate at much lower Pc; instability risk scales with pressure</div>
+            <div class="ch-solution"><span class="ch-solution-label">✓ Solution</span>Correct oxidiser mass flux and grain port geometry — grain defects critical at high pressure, so casting quality paramount</div>
+          </div>
+        </div>
+        <div class="proj-section-label">Outcomes</div>
+        <div class="outcomes">
+          <span class="outcome-pill">Stable combustion at 60 bar validated</span>
+          <span class="outcome-pill">~1 kN thrust for 6 seconds</span>
+          <span class="outcome-pill">Jet deflector geometry validated at SDSC</span>
+          <span class="outcome-pill">Casting processes qualified</span>
+        </div>
+        <div class="proj-section-label">Skills Demonstrated</div>
+        <div class="skill-chips">
+          <span class="skill-chip">Hybrid Propulsion</span><span class="skill-chip">Propellant Grain Casting</span>
+          <span class="skill-chip">Thermal Insulation Casting</span><span class="skill-chip">Combustion Systems</span>
+          <span class="skill-chip">Manufacturing</span><span class="skill-chip">ISRO Test Operations</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-eyebrow">Research Interests</div>
+    <h2 class="section-title">Spacecraft Propulsion Focus Areas</h2>
+    <p class="section-subtitle">Academic and research interests being developed during MSc studies at Cranfield University.</p>
+    <div class="research-grid">
+      <div class="research-card reveal">
+        <div class="research-icon">🧪</div>
+        <div class="research-title">Chemical Propulsion</div>
+        <p class="research-desc">Liquid and solid propellant systems, combustion instability, nozzle design, and high-performance propellant formulations for spacecraft and launch vehicle applications.</p>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🌱</div>
+        <div class="research-title">Green Propellants</div>
+        <p class="research-desc">Low-toxicity, high-performance monopropellant and bipropellant alternatives. Interest in AF-M315E, LMP-103S, and hydrogen peroxide-based propulsion systems.</p>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🔥</div>
+        <div class="research-title">Hybrid Propulsion</div>
+        <p class="research-desc">Wax-LOX, HTPB-N₂O, and advanced fuel grain geometries. Regression rate characterisation, combustion stability, and scaling from lab-scale to flight systems.</p>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">⚡</div>
+        <div class="research-title">Electric &amp; Electrospray Propulsion</div>
+        <p class="research-desc">Ion thrusters, Hall-effect thrusters, and electrospray propulsion for small satellites and deep-space missions. High specific impulse, low-thrust manoeuvring.</p>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">💧</div>
+        <div class="research-title">Hydrogen Propulsion</div>
+        <p class="research-desc">Cryogenic hydrogen as a propellant for upper stages and future spacecraft. Slush hydrogen handling, boil-off management, and high-Isp cryogenic engine cycles.</p>
+      </div>
+      <div class="research-card reveal">
+        <div class="research-icon">🛰️</div>
+        <div class="research-title">Spacecraft Systems Engineering</div>
+        <p class="research-desc">Spacecraft propulsion system architecture, thruster selection and sizing, mission delta-V budgets, GNC interface, and propulsion subsystem integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-eyebrow">Career</div>
+    <h2 class="section-title">Experience &amp; Education</h2>
+    <div class="about-grid reveal">
+      <!-- Timeline left -->
+      <div>
+        <p class="section-subtitle" style="margin-bottom:2rem;">Engineering experience across space, defence, and propulsion R&amp;D.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="tl-date">Oct 2025 – Sep 2026</div>
+            <div class="tl-role">MSc Astronautics &amp; Space Engineering — Space Propulsion</div>
+            <div class="tl-org">Cranfield University, UK</div>
+            <p class="tl-desc">Specialising in chemical and rocket propulsion. Subjects include Space Systems Engineering, FEM, Astrodynamics &amp; Mission Analysis, OBDH, and Electric Propulsion. Dissertation: Hybrid Electro-Chemical Propulsion System.</p>
+            <div class="tl-tags">
+              <span class="tag">Cranfield University</span><span class="tag">Spacecraft Propulsion</span><span class="tag">Space Systems</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="tl-date">Aug 2022 – Oct 2024</div>
+            <div class="tl-role">Propulsion &amp; Systems Engineer</div>
+            <div class="tl-org">Rathi Aerospace Labs, India</div>
+            <p class="tl-desc">Delivered six flight-critical propulsion and gas-generation programmes across international and national customers. End-to-end ownership of system design, manufacturing validation, and test campaigns from TRL 2–3 to TRL 7–8.</p>
+            <div class="tl-tags">
+              <span class="tag">ISRO</span><span class="tag">DRDO</span><span class="tag">Thales Belgium</span><span class="tag">IIT Madras</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education right -->
+      <div>
+        <p class="section-subtitle" style="margin-bottom:2rem;">Academic background in engineering.</p>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="edu-card">
+            <div class="edu-degree">MSc Astronautics &amp; Space Engineering</div>
+            <div class="edu-uni">Cranfield University, United Kingdom</div>
+            <div class="edu-year">Oct 2025 – Sep 2026</div>
+            <p class="edu-detail">Specialisation: Space Propulsion. Subjects: Space Systems Engineering, FEM, Astrodynamics &amp; Mission Analysis, OBDH, Electric Propulsion. Dissertation: Hybrid Electro-Chemical Propulsion System.</p>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">B.E. Aeronautical Engineering</div>
+            <div class="edu-uni">Anna University, India</div>
+            <div class="edu-year">Aug 2018 – May 2022</div>
+            <p class="edu-detail">Thermodynamics, Aerodynamics, Structures, Propulsion, Project &amp; Quality Management. Foundation for professional propulsion engineering career.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="section-eyebrow" style="justify-content:center;">Contact</div>
+      <h2 class="section-title" style="text-align:center;">Get in Touch</h2>
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;text-align:center;">
+        Open to aerospace engineering internships, graduate roles, and research collaborations.
+        Particularly interested in spacecraft propulsion, advanced propulsion technologies, and space systems engineering.
+      </p>
+      <div class="contact-grid reveal">
+        <a href="mailto:mohammedwaseem369m@gmail.com" class="contact-card">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">mohammedwaseem369m@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/mohammed-waseem-ikram-basha/" class="contact-card" target="_blank">
+          <span class="contact-icon">🔗</span>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">Mohammed Waseem Ikram Basha</div>
+          </div>
+        </a>
+        <a href="tel:+447352667835" class="contact-card">
+          <span class="contact-icon">📞</span>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+44 7352 667835</div>
+          </div>
+        </a>
+        <a href="#" class="contact-card">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Bedford, United Kingdom</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Mohammed Waseem Ikram Basha &nbsp;·&nbsp; Propulsion &amp; Systems Engineer &nbsp;·&nbsp; MSc Astronautics, Cranfield University &nbsp;·&nbsp; 2026
+</footer>
+
+<script>
+// ─── ORBITAL ANIMATION ──────────────────────────────────────────────────────
+(function() {
+  const sat = document.getElementById('satellite');
+  const trail = document.getElementById('orbit-trail');
+  if (!sat) return;
+
+  const cx = 280, cy = 280, rx = 185, ry = 130;
+  let angle = 0;
+  const speed = 0.008; // radians per frame
+  const trailLen = 80; // degrees of trail
+  const history = [];
+
+  function getPos(a) {
+    return {
+      x: cx + rx * Math.cos(a),
+      y: cy + ry * Math.sin(a)
+    };
+  }
+
+  function buildTrailPath() {
+    if (history.length < 2) return '';
+    let d = `M ${history[0].x.toFixed(1)} ${history[0].y.toFixed(1)}`;
+    for (let i = 1; i < history.length; i++) {
+      d += ` L ${history[i].x.toFixed(1)} ${history[i].y.toFixed(1)}`;
+    }
+    return d;
+  }
+
+  let lastTime = 0;
+  function animate(timestamp) {
+    const dt = timestamp - lastTime;
+    lastTime = timestamp;
+    if (dt > 100) { requestAnimationFrame(animate); return; } // Skip stale frames
+
+    angle += speed;
+    const pos = getPos(angle);
+
+    // Update satellite position
+    sat.setAttribute('transform', `translate(${pos.x.toFixed(1)}, ${pos.y.toFixed(1)}) rotate(${(angle * 180 / Math.PI).toFixed(1)})`);
+
+    // Build trail
+    history.push({ x: pos.x, y: pos.y });
+    const maxHistory = Math.round((trailLen * Math.PI / 180) / speed);
+    if (history.length > maxHistory) history.shift();
+
+    if (trail) {
+      trail.setAttribute('d', buildTrailPath());
+      trail.setAttribute('opacity', '0.6');
+    }
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+})();
+
+// ─── MISSION ELAPSED TIME TICKER ──────────────────────────────────────────
+(function() {
+  const el = document.getElementById('met-counter');
+  if (!el) return;
+  const start = Date.now();
+  setInterval(() => {
+    const elapsed = Math.floor((Date.now() - start) / 1000);
+    const h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+    const m = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+    const s = (elapsed % 60).toString().padStart(2, '0');
+    el.textContent = `T+ ${h}:${m}:${s}`;
+  }, 1000);
+})();
+
+// ─── PROJECT TABS ──────────────────────────────────────────────────────────
+function showProject(idx) {
+  document.querySelectorAll('.project-card').forEach((c, i) => {
+    c.classList.toggle('visible', i === idx);
+  });
+  document.querySelectorAll('.proj-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
+// ─── TRL BARS ─────────────────────────────────────────────────────────────
+const trlConfigs = [
+  { el: 'trl-0', from: 1, to: 8 },
+  { el: 'trl-1', from: 3, to: 8 },
+  { el: 'trl-2', from: 3, to: 8 },
+  { el: 'trl-3', from: 5, to: 8 },
+  { el: 'trl-4', from: 2, to: 8 },
+  { el: 'trl-5', from: 4, to: 6 },
+];
+trlConfigs.forEach(({ el, from, to }) => {
+  const container = document.getElementById(el);
+  if (!container) return;
+  for (let i = 1; i <= 9; i++) {
+    const seg = document.createElement('div');
+    seg.className = 'trl-seg';
+    if (i >= from && i <= to) seg.classList.add('filled');
+    else if (i < from) seg.classList.add('start');
+    container.appendChild(seg);
+  }
+});
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── NAV ACTIVE STATE ─────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
